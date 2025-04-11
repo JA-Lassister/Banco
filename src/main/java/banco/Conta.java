@@ -20,7 +20,8 @@ public class Conta {
         return false;
     }
 
-    public void depositarValor(double amount) {
+    public boolean depositar(double amount) {
         saldo += amount;
+        return true;
     }
 }
