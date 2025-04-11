@@ -9,7 +9,6 @@ public class TesteBanco {
 
         Scanner sc = new Scanner(System.in);
 
-
         System.out.println("Criando o cliente.\nDigite o nome:");
         String nome = sc.nextLine();
         System.out.println("Digite o sobrenome:");
@@ -37,7 +36,7 @@ public class TesteBanco {
                     System.out.println("\nO saldo da conta é R$ " + conta.getSaldo() + "\n");
                     System.out.println("Digite o valor que deseja sacar: ");
                     if (!conta.sacar(sc.nextDouble()))
-                        System.out.println("Não foi possível realizar a operação. Valor maior do que o saldo.");
+                        System.out.println("Não foi possível realizar a operação. Saldo insuficiente.");
                     System.out.println("Saldo atual: R$ " + conta.getSaldo());
                     break;
                 case 0:
