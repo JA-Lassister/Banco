@@ -1,8 +1,8 @@
 package banco;
 
-public class Conta {
+public abstract class Conta {
 
-    private double saldo;
+    protected double saldo;
 
     public Conta(double saldoInicial) {
         saldo = saldoInicial;

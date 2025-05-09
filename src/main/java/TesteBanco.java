@@ -5,6 +5,7 @@ public class TesteBanco {
 
     public static int resposta1;
     public static int resposta2;
+    public static int resposta3;
     public static int indice;
 
     public static void main(String [] args) {
@@ -23,16 +24,43 @@ public class TesteBanco {
                 case 1:
                     if (banco.getNumeroDeClientes() < 5) {
                         System.out.println("Criando o cliente.\nDigite o nome:");
-                        String nome = sc.next();
+                        sc.nextLine();
+                        String nome = sc.nextLine();
                         System.out.println("Digite o sobrenome:");
-                        String sobrenome = sc.next();
+                        String sobrenome = sc.nextLine();
                         Cliente cliente = new Cliente(nome, sobrenome);
 
-                        System.out.println("Criando uma conta para o cliente " + nome + " " + sobrenome);
-                        System.out.println("Digite o saldo da conta: ");
-                        cliente.setConta(new Conta(sc.nextDouble()));
+                        System.out.println("\nDigite o número referente ao tipo de conta a ser criada.");
+                        System.out.println("1 - Conta Poupança.");
+                        System.out.println("2 - Conta Corrente.");
+                        System.out.println("0 - Voltar.");
+                        resposta2 = sc.nextInt();
+                        sc.nextLine();
 
-                        banco.adicionarCliente(cliente);
+                        switch (resposta2) {
+                            case 1:
+                                System.out.println("Criando uma conta poupança para o cliente " + nome + " " + sobrenome);
+                                System.out.println("Digite o saldo da conta: ");
+                                double saldoincial = sc.nextDouble();
+                                System.out.println("Digite a taxa de rendimento: ");
+                                double rendimento = sc.nextDouble();
+                                cliente.setConta(new ContaPoupanca(saldoincial, rendimento));
+
+                                banco.adicionarCliente(cliente);
+                                break;
+                            case 2:
+                                System.out.println("Criando uma conta corrente para o cliente " + nome + " " + sobrenome);
+                                System.out.println("Digite o saldo da conta: ");
+                                saldoincial = sc.nextDouble();
+                                System.out.println("Digite o valor do cheque especial: ");
+                                double chequeEspecial = sc.nextDouble();
+                                cliente.setConta(new ContaCorrente(saldoincial, chequeEspecial));
+
+                                banco.adicionarCliente(cliente);
+                                break;
+                            case 0:
+                                break;
+                        }
                     }
                     else
                         System.out.println("Número máximo de clientes atingidos");
@@ -55,9 +83,9 @@ public class TesteBanco {
                         System.out.println("1 - Depositar.");
                         System.out.println("2 - Sacar.");
                         System.out.println("0 - Voltar.");
-                        resposta2 = sc.nextInt();
+                        resposta3 = sc.nextInt();
 
-                        switch (resposta2){
+                        switch (resposta3){
                             case 1:
                                 System.out.println("Digite o valor que deseja depositar: ");
                                 banco.getCliente(indice).getConta().depositar(sc.nextDouble());
@@ -73,7 +101,7 @@ public class TesteBanco {
                             case 0:
                                 break;
                         }
-                    } while (resposta2 != 0);
+                    } while (resposta3 != 0);
                     break;
                 case 0:
                     break;
