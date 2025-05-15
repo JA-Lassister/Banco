@@ -1,10 +1,12 @@
 package banco;
 
+import java.util.ArrayList;
+
 public class Cliente {
 
     private String nome;
     private String sobrenome;
-    private Conta conta;
+    private ArrayList<Conta> contas = new ArrayList<>();
 
     public Cliente(String nome, String sobrenome) {
         this.nome = nome;
@@ -27,11 +29,15 @@ public class Cliente {
         this.sobrenome = sobrenome;
     }
 
-    public Conta getConta() {
-        return conta;
+    public Conta getConta(int id) {
+        return contas.get(id);
     }
 
-    public void setConta(Conta conta) {
-        this.conta = conta;
+    public void adicionarConta(Conta conta) {
+        contas.add(conta);
+    }
+
+    public int getNumeroDeContas() {
+        return contas.size();
     }
 }
